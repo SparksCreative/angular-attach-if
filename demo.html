@@ -1,0 +1,56 @@
+<html lang="en" ng-app="scopetest">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+    <script src="attach-if.js"></script>
+    <script>
+        var app = angular.module('scopetest', ['sparkscreative.attach-if'])
+                .controller('parentCtrl', [ '$scope', function($scope) {
+                    $scope.values = { attached: true };
+                    $scope.changes = 0;
+                    $scope.$watch(function() { return $scope.values.shared; }, function() { $scope.changes++; });
+                }])
+                .controller('childCtrl', [ '$scope', function($scope) {
+                    $scope.changes = 0;
+                    $scope.$watch(function() { return $scope.values.shared; }, function() { $scope.changes++; });
+                }]);
+
+
+    </script>
+    <style>
+        div { border: 1px solid black; }
+        .parent { width: 600px; height: 400px; margin: 50px auto; }
+        .child { width: 292px; height: 392px; margin: 3px; float: left; }
+        input, label, span { width: 90%; margin: 5px 5%; float: left; clear: left; }
+        h2 { text-align: center; }
+        label { font-weight: bold; }
+        span { font-style: italic; text-align: right; }
+    </style>
+</head>
+
+<body>
+<div class="parent" ng-controller="parentCtrl">
+    <div class="child">
+        <h2>Parent Controller [{{$id}}]</h2>
+
+        <label>Shared value:</label>
+        <input type="text" ng-model='values.shared' />
+        <span>(digested changes: {{changes}})</span>
+
+        <label>Child attached:</label>
+        <input type="checkbox" ng-model='values.attached' />
+    </div>
+    <div class="child" ng-controller="childCtrl" attach-if="values.attached">
+        <h2>Child Controller [{{$id}}]</h2>
+
+        <label>Shared value:</label>
+        <input type="text" ng-model='values.shared' />
+        <span>(digested changes: {{changes}})</span>
+
+        <label>Local value:</label>
+        <input type="text" ng-model='local' />
+
+    </div>
+</div>
+</body>
+</html>

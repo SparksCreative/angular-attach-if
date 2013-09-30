@@ -1,0 +1,8 @@
+{
+  "name": "angular-attach-if",
+  "version": "0.1.0",
+  "main": "attach-if.js",
+  "dependencies": {
+    "angular": "~1.0.5"
+  }
+}
