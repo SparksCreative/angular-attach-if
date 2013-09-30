@@ -18,6 +18,7 @@
 
     </script>
     <style>
+        body { font-family: Helvetica, arial, freesans, clean, sans-serif }
         div { border: 1px solid black; }
         .parent { width: 600px; height: 400px; margin: 50px auto; }
         .child { width: 292px; height: 392px; margin: 3px; float: left; }
@@ -29,25 +30,26 @@
 </head>
 
 <body>
+<h2><a href="https://github.com/Sparks-Creative-Limited/angular-attach-if" />angular-attach-if</a></h2>
 <div class="parent" ng-controller="parentCtrl">
     <div class="child">
-        <h2>Parent Controller [{{$id}}]</h2>
+        <h2>parent controller [{{$id}}]</h2>
 
-        <label>Shared value:</label>
+        <label>shared value:</label>
         <input type="text" ng-model='values.shared' />
         <span>(digested changes: {{changes}})</span>
 
-        <label>Child attached:</label>
+        <label>child attached:</label>
         <input type="checkbox" ng-model='values.attached' />
     </div>
     <div class="child" ng-controller="childCtrl" attach-if="values.attached">
-        <h2>Child Controller [{{$id}}]</h2>
+        <h2>child controller [{{$id}}]</h2>
 
-        <label>Shared value:</label>
+        <label>shared value:</label>
         <input type="text" ng-model='values.shared' />
         <span>(digested changes: {{changes}})</span>
 
-        <label>Local value:</label>
+        <label>local value:</label>
         <input type="text" ng-model='local' />
 
     </div>
