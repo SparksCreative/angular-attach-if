@@ -1,6 +1,6 @@
 /*
- * attach-if v0.2.0
- * (c) 2013 Sparks Creative Limited http://sparks.uk.net
+ * attach-if v0.3.0
+ * (c) 2014 Sparks Creative Limited http://sparks.uk.net
  * License: MIT
  */
 
@@ -42,6 +42,7 @@ angular.module('sparkscreative.attach-if', [])
                                     element.after(clone);
                                 });
                             }
+                            childScope.$broadcast('attached');
                         } else {
                             if(childScope) {
                                 childScope.$broadcast('detach');
